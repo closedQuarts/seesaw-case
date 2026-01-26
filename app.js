@@ -14,8 +14,9 @@ seesaw.addEventListener('click',function(event){
     const rect = seesaw.getBoundingClientRect();
     const clickX = event.clientX - rect.left
     const centerX = rect.width/2;
-
     const distanceFromCenter = clickX - centerX;
+
+    const weightElem = document.createElement('div');
 
     console.log("Click X:",clickX);
     console.log("Center X:",centerX);
@@ -24,6 +25,19 @@ seesaw.addEventListener('click',function(event){
     const weight = getRandomWeight();
     console.log("Created weight: ",weight,"kg");
 
+    weightElem.classList.add("weight-object");
+    weightElem.innerText = weight + 'kg';
+    weightElem.style.left = clickX + 'px';
+    seesaw.appendChild(weightElem);
+
+    objects.push({
+        id: Date.now(),weight: weight,position: distanceFromCenter,element: weightElem
+    });
+
+    console.log("güncel nesne listesi:",objects);
+
 
 
 });
+
+
