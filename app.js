@@ -1,7 +1,7 @@
 const seesaw = document.getElementById("seesaw");
 const seesawCase =document.getElementById("seesaw-case");
-const leftWeightDisplay =document.getElementById("left_weight");
-const rightWeightDisplay =document.getElementById("right_weight");
+const leftWeightDisplay =document.getElementById("left-weight");
+const rightWeightDisplay =document.getElementById("right-weight");
 
 let objects = [];
 let angle = 0;
@@ -64,7 +64,7 @@ function updateSim(){
     });
 
 //angle calculation from pdf
-const sensitivty = 100;
+const sensitivty = 150;
 let calAngle= (rightT - leftT) / sensitivty;
 
 //limiting
@@ -122,6 +122,17 @@ function loadFromLocalStoroge(){
         saveLocalStorage();
     }
 }
+
+const reset_button = document.getElementById('reset-btn');
+if(reset_button){
+    reset_button.addEventListener('click',function(){
+        localStorage.removeItem('seesaw_data');
+        location.reload();
+    });
+}
+
+
+
 
 window.addEventListener("load",loadFromLocalStoroge);
 
