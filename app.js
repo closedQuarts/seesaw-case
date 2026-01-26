@@ -34,10 +34,51 @@ seesaw.addEventListener('click',function(event){
         id: Date.now(),weight: weight,position: distanceFromCenter,element: weightElem
     });
 
-    console.log("güncel nesne listesi:",objects);
-
-
+    console.log("Object List",objects);
+    updateSim();
 
 });
+
+function updateSim(){
+    let leftT = 0;
+    let rightT = 0;
+    let leftTotalW = 0;
+    let rightTotalW = 0;
+
+    //search all objects by one by
+    objects.forEach(function(obj) {
+        //for left objects
+        if (obj.position<0){
+            leftT += obj.weight * Math.abs(obj.position);
+            leftTotalW += obj.weight;
+        }
+        //for right
+        else {
+            rightT += obj.weight * obj.position;
+            rightTotalW += obj.weight;
+
+        }
+    });
+
+//angle calculation from pdf
+const sensitivty = 50;
+let calAngle= (rightT - leftT) / sensitivty;
+
+//limiting
+if(calAngle>30) calAngle = 30;
+if(calAngle< -30) calAngle = -30;
+angle = calAngle;
+
+seesaw.style.transform = `rotate(${angle}deg)`;
+
+leftTotalW.innerText = leftTotalW;
+rightTotalW.innerText = rightTotalW;
+
+console.log("Left Torque : ${LeftT}, Right Toruqe: ${RightT}, Angle : ${angle} ");
+
+}
+
+
+
 
 
