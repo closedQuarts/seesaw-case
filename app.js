@@ -1,7 +1,7 @@
 const seesaw = document.getElementById("seesaw");
 const seesawCase =document.getElementById("seesaw-case");
-const leftWeightDisplay =document.getElementById("left-weight");
-const rightWeightDisplay =document.getElementById("right-weight");
+const leftWeightDisplay =document.getElementById("left_weight");
+const rightWeightDisplay =document.getElementById("right_weight");
 
 let objects = [];
 let angle = 0;
@@ -15,6 +15,8 @@ seesaw.addEventListener('click',function(event){
     const clickX = event.clientX - rect.left
     const centerX = rect.width/2;
     const distanceFromCenter = clickX - centerX;
+    
+    
 
     const weightElem = document.createElement('div');
 
@@ -36,6 +38,7 @@ seesaw.addEventListener('click',function(event){
 
     console.log("Object List",objects);
     updateSim();
+    saveLocalStorage();
 
 });
 
@@ -61,7 +64,7 @@ function updateSim(){
     });
 
 //angle calculation from pdf
-const sensitivty = 50;
+const sensitivty = 100;
 let calAngle= (rightT - leftT) / sensitivty;
 
 //limiting
@@ -71,14 +74,56 @@ angle = calAngle;
 
 seesaw.style.transform = `rotate(${angle}deg)`;
 
-leftTotalW.innerText = leftTotalW;
-rightTotalW.innerText = rightTotalW;
+leftWeightDisplay.innerText = leftTotalW;
+rightWeightDisplay.innerText = rightTotalW;
 
-console.log("Left Torque : ${LeftT}, Right Toruqe: ${RightT}, Angle : ${angle} ");
+//do not "" intead ``
+console.log(`Left Torque : ${leftT}, Right Torque: ${rightT}, Angle : ${angle}`);
 
 }
 
+function saveLocalStorage(){
 
+    const cleandata = objects.map(obj =>{
+        return {
+            id: obj.id,
+            weight: obj.weight,
+            position: obj.position
+        };
+    });
+    localStorage.setItem("seesaw_data",JSON.stringify(cleandata));
+}
+
+function loadFromLocalStoroge(){
+    const saved_data = localStorage.getItem("seesaw_data");
+
+    if (saved_data){
+        objects = JSON.parse(saved_data);
+
+        objects.forEach(function(obj){
+            //new div (same as previous but instant complete)
+            const weightElem = document.createElement('div');
+            weightElem.classList.add('weight-object');
+            weightElem.innerText = obj.weight + "kg";
+
+            const rect = seesaw.getBoundingClientRect();
+            const centerX = rect.width/2;
+            const leftPos = obj.position + centerX;
+
+            weightElem.style.left = leftPos + "px";
+            obj.element=weightElem
+            //adding dom reference because cant take it from json
+            seesaw.appendChild(weightElem);
+
+
+        });
+
+        updateSim();
+        saveLocalStorage();
+    }
+}
+
+window.addEventListener("load",loadFromLocalStoroge);
 
 
 
