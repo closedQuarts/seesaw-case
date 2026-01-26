@@ -1,0 +1,84 @@
+body {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: ghostwhite;
+    overflow: hidden;
+}
+
+#area_of_scene {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 600px;
+    border:1px solid darkolivegreen;
+    background-color: whitesmoke;
+    box-shadow: 0 0 10px rgba(red, green, blue, alpha);
+}
+
+#ui {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(red, green, blue, alpha);
+    padding: 10px;
+    border-radius: 8pt;
+    border: 1px solid #ccc;
+    z-index: 10;
+}
+
+#seesaw-case{
+    position: absolute;
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 200px;
+}
+
+#seesaw{
+    width: 100%;
+    height:10px;
+    background-color: #2ce;
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    transition: transform 0.5s cubic-bezier(0.25,1,0.5,1);
+    transform-origin: 50% 100%;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 2;
+}
+
+#pivot{
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 40px solid #7f7f7f;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    
+}
+
+.weight_object{
+    position: absolute;
+    bottom: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
