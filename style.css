@@ -67,14 +67,40 @@ body {
     
 }
 
-.weight-object{
+#ghost-object{
     position: absolute;
     bottom: 10px;
+    width: 34px;
+    height: 34px;
+    background-color: cadetblue;
+    border-radius: 50%;
+
+    opacity: 0.4;
+    pointer-events: none;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: azure;
+    font-size: 12px;
+    font-weight: bold;
+    transform: translateX(-50%);
+    z-index: 5;
+    border: 2px darksalmon;
+}
+
+.weight-object{
+    position: absolute;
+    /*bottom: 10px;*/
     width: 30px;
     height: 30px;
     background-color: red;
     border-radius: 50%;
-    
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     text-align: center;
     line-height: 30px;
     color: white;
@@ -82,4 +108,8 @@ body {
     font-weight: bold;
     transform: translateX(-50%);
     pointer-events: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+
+    transition: bottom 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
+

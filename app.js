@@ -3,6 +3,7 @@ const seesawCase =document.getElementById("seesaw-case");
 const leftWeightDisplay =document.getElementById("left-weight");
 const rightWeightDisplay =document.getElementById("right-weight");
 const nextWeightDisplay =document.getElementById("next-weight");
+const ghostObject = document.getElementById("ghost-object");
 
 let objects = [];
 let angle = 0;
@@ -16,13 +17,31 @@ function getRandomWeight(){
     return Math.ceil(Math.random()*10);
 }
 
+seesaw.addEventListener('mousemove',function(event){
+    const rect = seesaw.getBoundingClientRect();
+    const hoverX = event.clientX - rect.left;
+
+    ghostObject.style.display ='flex';
+    ghostObject.style.left = hoverX + 'px';
+    ghostObject.innerText = currentNextWeight + 'kg';
+});
+
+
+   /* */
+    
+seesaw.addEventListener('mouseleave',function(){
+    ghostObject.style.display = "none";
+});
+
+
 seesaw.addEventListener('click',function(event){
+
     const rect = seesaw.getBoundingClientRect();
     const clickX = event.clientX - rect.left
     const centerX = rect.width/2;
     const distanceFromCenter = clickX - centerX;
-    
-    
+
+})
 
     const weightElem = document.createElement('div');
 
@@ -39,20 +58,28 @@ seesaw.addEventListener('click',function(event){
     weightElem.classList.add("weight-object");
     weightElem.innerText = weight + 'kg';
     weightElem.style.left = clickX + 'px';
+    
+    //dropping effect
+    weightElem.style.bottom = '150px';
+
     seesaw.appendChild(weightElem);
 
+    //browser rendering
+    setTimeout(() => {weightElem.style.bottom = '10px';},50);
+
+
     objects.push({
-        id: Date.now(),weight: weight,position: distanceFromCenter,element: weightElem
-    });
+        id: Date.now(),weight: weight,position: distanceFromCenter,element: weightElem});
 
     //console.log("Object List",objects);
     updateSim();
     currentNextWeight = getRandomWeight();
     nextWeightDisplay.innerText=currentNextWeight;
-    saveLocalStorage();
-    
 
-});
+    ghostObject.innerText = currentNextWeight + 'kg';
+
+    saveLocalStorage();
+
 
 function updateSim(){
     let leftT = 0;
@@ -86,6 +113,7 @@ angle = calAngle;
 
 seesaw.style.transform = `rotate(${angle}deg)`;
 
+//should use if?? LOOK LATER!!!!!!!!!!!
 leftWeightDisplay.innerText = leftTotalW;
 rightWeightDisplay.innerText = rightTotalW;
 
@@ -124,6 +152,7 @@ function loadFromLocalStoroge(){
             const leftPos = obj.position + centerX;
 
             weightElem.style.left = leftPos + "px";
+            weightElem.style.bottom = '10px';
             obj.element=weightElem
             //adding dom reference because cant take it from json
             seesaw.appendChild(weightElem);
