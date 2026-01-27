@@ -2,9 +2,15 @@ const seesaw = document.getElementById("seesaw");
 const seesawCase =document.getElementById("seesaw-case");
 const leftWeightDisplay =document.getElementById("left-weight");
 const rightWeightDisplay =document.getElementById("right-weight");
+const nextWeightDisplay =document.getElementById("next-weight");
 
 let objects = [];
 let angle = 0;
+
+//decide first weight
+let currentNextWeight = getRandomWeight();
+
+nextWeightDisplay.innerText = currentNextWeight;
 
 function getRandomWeight(){
     return Math.ceil(Math.random()*10);
@@ -20,12 +26,15 @@ seesaw.addEventListener('click',function(event){
 
     const weightElem = document.createElement('div');
 
-    console.log("Click X:",clickX);
-    console.log("Center X:",centerX);
-    console.log("Distance from center:",distanceFromCenter);
+    // deleted ().
+    const weight = currentNextWeight;
 
-    const weight = getRandomWeight();
-    console.log("Created weight: ",weight,"kg");
+    /*console.log("Click X:",clickX);
+    console.log("Center X:",centerX);
+    console.log("Distance from center:",distanceFromCenter); 
+
+   
+    console.log("Created weight: ",weight,"kg"); */
 
     weightElem.classList.add("weight-object");
     weightElem.innerText = weight + 'kg';
@@ -36,9 +45,12 @@ seesaw.addEventListener('click',function(event){
         id: Date.now(),weight: weight,position: distanceFromCenter,element: weightElem
     });
 
-    console.log("Object List",objects);
+    //console.log("Object List",objects);
     updateSim();
+    currentNextWeight = getRandomWeight();
+    nextWeightDisplay.innerText=currentNextWeight;
     saveLocalStorage();
+    
 
 });
 
@@ -76,6 +88,7 @@ seesaw.style.transform = `rotate(${angle}deg)`;
 
 leftWeightDisplay.innerText = leftTotalW;
 rightWeightDisplay.innerText = rightTotalW;
+
 
 //do not "" intead ``
 console.log(`Left Torque : ${leftT}, Right Torque: ${rightT}, Angle : ${angle}`);
