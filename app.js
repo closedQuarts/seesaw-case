@@ -17,31 +17,35 @@ function getRandomWeight(){
     return Math.ceil(Math.random()*10);
 }
 
-seesaw.addEventListener('mousemove',function(event){
+seesawCase.addEventListener('mousemove',function(event){
     const rect = seesaw.getBoundingClientRect();
     const hoverX = event.clientX - rect.left;
 
     ghostObject.style.display ='flex';
     ghostObject.style.left = hoverX + 'px';
+
+    const hoverY = event.clientY - rect.top;
+    ghostObject.style.top = hoverY + 'px';
+
     ghostObject.innerText = currentNextWeight + 'kg';
 });
 
 
    /* */
     
-seesaw.addEventListener('mouseleave',function(){
+seesawCase.addEventListener('mouseleave',function(){
     ghostObject.style.display = "none";
 });
 
 
-seesaw.addEventListener('click',function(event){
+seesawCase.addEventListener('click',function(event){
 
     const rect = seesaw.getBoundingClientRect();
     const clickX = event.clientX - rect.left
     const centerX = rect.width/2;
     const distanceFromCenter = clickX - centerX;
 
-})
+
 
     const weightElem = document.createElement('div');
 
@@ -60,7 +64,7 @@ seesaw.addEventListener('click',function(event){
     weightElem.style.left = clickX + 'px';
     
     //dropping effect
-    weightElem.style.bottom = '150px';
+    weightElem.style.bottom = '250px';
 
     seesaw.appendChild(weightElem);
 
@@ -79,7 +83,7 @@ seesaw.addEventListener('click',function(event){
     ghostObject.innerText = currentNextWeight + 'kg';
 
     saveLocalStorage();
-
+});
 
 function updateSim(){
     let leftT = 0;

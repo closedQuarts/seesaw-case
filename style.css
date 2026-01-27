@@ -37,9 +37,12 @@ body {
     transform: translateX(-50%);
     width: 600px;
     height: 200px;
+    z-index: 10; /* clicking issue */
+    cursor: crosshair; /*aiming*/
 }
 
 #seesaw{
+    pointer-events: none;
     width: 100%;
     height:10px;
     background-color: #2ce;
@@ -69,6 +72,7 @@ body {
 
 #ghost-object{
     position: absolute;
+    top: 0;
     bottom: 10px;
     width: 34px;
     height: 34px;
