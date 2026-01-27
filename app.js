@@ -18,15 +18,41 @@ function getRandomWeight(){
     return Math.ceil(Math.random()*10);
 }
 
+function getWeightStyle(weight){
+    let color;
+    let size;
+
+    if (weight <= 3) {
+        color = '#3498db'; // Mavi (Hafif)
+    } else if (weight <= 6) {
+        color = '#2ecc71'; // yeşil (Orta)
+    } else if (weight <= 8) {
+        color = '#f39c12'; // Turuncu (Ağır)
+    } else {
+        color = '#e74c3c'; // Kırmızı (En Ağır)
+    }
+    
+    size = 30 + (weight * 3);
+    
+    return { color: color, size: size};
+}
+
 seesawCase.addEventListener('mousemove',function(event){
     const rect = seesaw.getBoundingClientRect();
     const hoverX = event.clientX - rect.left;
 
+    const style = getWeightStyle(currentNextWeight);
+
     ghostObject.style.display ='flex';
     ghostObject.style.left = hoverX + 'px';
+    ghostObject.style.top = '0px';
 
-    const hoverY = event.clientY - rect.top;
-    ghostObject.style.top = hoverY + 'px';
+    ghostObject.style.width = style.size + 'px';
+    ghostObject.style.height = style.size + 'px';
+    ghostObject.style.backgroundColor = style.color;
+    ghostObject.style.borderColor = style.color;
+    ghostObject.style.opacity = '0.5';
+    
 
     ghostObject.innerText = currentNextWeight + 'kg';
 });
@@ -56,16 +82,18 @@ seesawCase.addEventListener('click',function(event){
     /*console.log("Click X:",clickX);
     console.log("Center X:",centerX);
     console.log("Distance from center:",distanceFromCenter); 
-
-   
     console.log("Created weight: ",weight,"kg"); */
+
+    const style = getWeightStyle(weight);
 
     weightElem.classList.add("weight-object");
     weightElem.innerText = weight + 'kg';
     weightElem.style.left = clickX + 'px';
-    
     //dropping effect
     weightElem.style.bottom = '250px';
+    weightElem.style.width = style.size + 'px';
+    weightElem.style.height = style.size + 'px';
+    weightElem.style.backgroundColor = style.color;
 
     seesaw.appendChild(weightElem);
 
@@ -82,6 +110,14 @@ seesawCase.addEventListener('click',function(event){
     nextWeightDisplay.innerText=currentNextWeight;
 
     ghostObject.innerText = currentNextWeight + 'kg';
+
+    //updating shadow preview
+    const newStyle = getWeightStyle(currentNextWeight);
+    ghostObject.innerText = currentNextWeight + 'kg';
+    ghostObject.style.width = newStyle.size + 'px';
+    ghostObject.style.height = newStyle.size + 'px';
+    ghostObject.style.backgroundColor = newStyle.color;
+    ghostObject.style.borderColor = newStyle.color;
 
     saveLocalStorage();
 });
@@ -151,12 +187,17 @@ function loadFromLocalStoroge(){
             //new div (same as previous but instant complete)
             const weightElem = document.createElement('div');
             weightElem.classList.add('weight-object');
-            weightElem.innerText = obj.weight + "kg";
+            
 
+            const style = getWeightStyle(obj.weight);
             const rect = seesaw.getBoundingClientRect();
             const centerX = rect.width/2;
             const leftPos = obj.position + centerX;
 
+            weightElem.innerText = obj.weight + "kg";
+            weightElem.style.width = style.size + 'px';
+            weightElem.style.height = style.size + 'px';
+            weightElem.style.backgroundColor = style.color;
             weightElem.style.left = leftPos + "px";
             weightElem.style.bottom = '10px';
             obj.element=weightElem
