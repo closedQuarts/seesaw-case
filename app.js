@@ -4,6 +4,7 @@ const leftWeightDisplay =document.getElementById("left-weight");
 const rightWeightDisplay =document.getElementById("right-weight");
 const nextWeightDisplay =document.getElementById("next-weight");
 const ghostObject = document.getElementById("ghost-object");
+const angleDisplay =document.getElementById("angle-display");
 
 let objects = [];
 let angle = 0;
@@ -120,6 +121,7 @@ seesaw.style.transform = `rotate(${angle}deg)`;
 //should use if?? LOOK LATER!!!!!!!!!!!
 leftWeightDisplay.innerText = leftTotalW;
 rightWeightDisplay.innerText = rightTotalW;
+angleDisplay.innerText = angle.toFixed(1)+"°";
 
 
 //do not "" intead ``
