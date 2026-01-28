@@ -2,10 +2,10 @@
 
 A physics-based interactive seesaw simulation built with pure JavaScript, HTML, and CSS. This project demonstrates DOM manipulation, state management, and torque-based physics calculations without using any external libraries.
 
-## 🚀 Live Demo
+## Live Demo
 [View Live Simulation](https://github.com/efedemirtas/seesaw-case)
 
-## 🛠️ Features
+## Features
 - **Physics Engine:** Calculates torque (`Weight x Distance`) to determine tilt angle dynamically.
 - **Persistent State:** Uses `localStorage` to save weights, positions, and activity logs across reloads.
 - **Enhanced UX:**
@@ -14,7 +14,7 @@ A physics-based interactive seesaw simulation built with pure JavaScript, HTML, 
   - **Visual Feedback:** Weights change color and size based on their mass (Blue < Green < Orange < Red).
   - **Next Weight Preview:** Users can strategize by seeing the upcoming weight.
 
-## 🧠 Thought Process & Trade-offs
+## Thought Process & Trade-offs
 
 ### 1. Hit Area vs. Visual Element
 **Challenge:** Clicking on the thin seesaw plank was difficult for users.
@@ -27,12 +27,15 @@ A physics-based interactive seesaw simulation built with pure JavaScript, HTML, 
 ### 3. Log System & LocalStorage
 **Decision:** To make it a complete simulation tool, I added an Activity Log panel. To ensure data persistence, I engineered the `localStorage` logic to save not just the weight positions, but also the log history, restoring the full session state upon reload.
 
-## 🤖 AI Assistance Declaration
+## AI Assistance Declaration
 In accordance with the guidelines, I utilized AI tools (Gemini) for:
 - Initial scaffolding of the HTML/CSS structure.
 - Debugging syntax errors and CSS alignment issues.
 - Refactoring `localStorage` logic to handle the log data structure efficiently.
 *The core physics logic, state management, and interaction design were implemented and verified by me.*
 
-## 🏃‍♂️ How to Run
+## How to Run
 Simply open `index.html` in any modern web browser. No build step required.
+
+## UML Diagram
+![UML Diyagramı](./uml-diag.png)
