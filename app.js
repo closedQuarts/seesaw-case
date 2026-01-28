@@ -6,6 +6,7 @@ const nextWeightDisplay =document.getElementById("next-weight");
 const ghostObject = document.getElementById("ghost-object");
 const angleDisplay =document.getElementById("angle-display");
 
+
 let objects = [];
 let angle = 0;
 
