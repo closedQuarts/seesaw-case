@@ -122,8 +122,8 @@ body {
     position: absolute;
     top: 20px;
     right: 40px; /*right corner*/
-    width: 400px;
-    height: 125px; 
+    width: 200px;
+    height: 225px; 
     background: white;
     border: 1px solid #ccc;
     border-radius: 8px;

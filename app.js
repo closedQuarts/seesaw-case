@@ -5,7 +5,7 @@ const rightWeightDisplay =document.getElementById("right-weight");
 const nextWeightDisplay =document.getElementById("next-weight");
 const ghostObject = document.getElementById("ghost-object");
 const angleDisplay =document.getElementById("angle-display");
-
+const logList = document.getElementById("log-list");
 
 let objects = [];
 let angle = 0;
@@ -17,6 +17,21 @@ nextWeightDisplay.innerText = currentNextWeight;
 
 function getRandomWeight(){
     return Math.ceil(Math.random()*10);
+}
+
+function addLog(message){
+    if(!logList) return;
+
+    const entry = document.createElement('div');
+    entry.classList.add('log-entry');
+
+    const time = new Date().toLocaleTimeString();
+    
+    //create msg
+    entry.innerHTML = `<strong style="color:#333">[${time}]</strong><br>${message}`;
+    
+    // fifo (first in first out)
+    logList.prepend(entry);
 }
 
 function getWeightStyle(weight){
@@ -105,7 +120,12 @@ seesawCase.addEventListener('click',function(event){
     objects.push({
         id: Date.now(),weight: weight,position: distanceFromCenter,element: weightElem});
 
-    //console.log("Object List",objects);
+    const side = distanceFromCenter < 0 ? "Left" : "Right";
+    const distance = Math.round(Math.abs(distanceFromCenter));
+    
+    // call log func
+    addLog(`Added <b>${weight}kg</b> to ${side}<br>Dist: ${distance}px`);
+    
     updateSim();
     currentNextWeight = getRandomWeight();
     nextWeightDisplay.innerText=currentNextWeight;
