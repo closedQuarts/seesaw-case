@@ -4,6 +4,7 @@ A physics-based interactive seesaw simulation built with pure JavaScript, HTML, 
 
 ## Live Demo
 [View Live Simulation](https://closedquarts.github.io/seesaw-case/)
+[YOUTUBE VIDEO](https://youtu.be/eZGqTvPIeLs)
 
 ## Features
 - **Physics Engine:** Calculates torque (`Weight x Distance`) to determine tilt angle dynamically.
