@@ -17,16 +17,16 @@ body {
     height: 600px;
     border:1px solid darkolivegreen;
     background-color: whitesmoke;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* subtle shadow */
 }
 
 #ui {
-    position: absolute;
+    position: absolute; 
     top: 20px;
     left: 20px;
     background: rgba(red, green, blue, alpha);
-    padding: 10px;
-    border-radius: 8pt;
+    padding: 10px; /* spacing inside */
+    border-radius: 8pt; /* rounded corners*/
     border: 1px solid #ccc;
     z-index: 10;
 }
@@ -34,7 +34,7 @@ body {
 #seesaw-case{
     position: absolute;
     bottom: 150px;
-    left: 50%;
+    left: 50%; /* center cheat*/
     transform: translateX(-50%);
     width: 600px;
     height: 200px;
@@ -43,15 +43,15 @@ body {
 }
 
 #seesaw{
-    pointer-events: none;
+    pointer-events: none; /* playing improved (cant let the click seesaw) */
     width: 100%;
     height:10px;
     background-color: #2ce;
     position: absolute;
     bottom: 40px;
     left: 0;
-    transition: transform 0.5s cubic-bezier(0.25,1,0.5,1);
-    transform-origin: 50% 100%;
+    transition: transform 0.5s cubic-bezier(0.25,1,0.5,1); /*smoother*/
+    transform-origin: 50% 100%; /*pivot point*/
     cursor: pointer;
     border-radius: 5px;
     z-index: 2;
@@ -81,7 +81,7 @@ body {
     border-radius: 50%;
 
     opacity: 0.4;
-    pointer-events: none;
+    pointer-events: none; /* click issue solved */
 
     display: none;
     justify-content: center;
@@ -156,7 +156,7 @@ body {
     padding: 4px 0;
     border-bottom: 1px dashed #eee;
     color: #555;
-    animation: fadeIn 0.5s;
+    animation: fadeIn 0.5s; /*callin' */
 }
 
 @keyframes fadeIn {
