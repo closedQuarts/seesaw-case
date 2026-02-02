@@ -5,19 +5,19 @@ body {
     align-items: center;
     gap: 20px;
     height: 100vh;
-    margin: 0;
-    background-color: ghostwhite;
-    overflow: hidden;
+    margin: 0; /* remove default margin */
+    background-color: ghostwhite; 
+    overflow: hidden; /* prevent scrollbars */
 }
 
 #area_of_scene {
-    position: relative;
+    position: relative; /* for absolute children */
     width: 100%;
     max-width: 800px;
     height: 600px;
     border:1px solid darkolivegreen;
     background-color: whitesmoke;
-    box-shadow: 0 0 10px rgba(red, green, blue, alpha);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #ui {
@@ -112,7 +112,7 @@ body {
     font-size: 12px;
     font-weight: bold;
     transform: translateX(-50%);
-    pointer-events: none;
+    pointer-events: none; /* through to shadow */
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 
     transition: bottom 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
